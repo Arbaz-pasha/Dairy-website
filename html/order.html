@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/project.css">
+    <link rel="shortcut icon" href="https://www.kmfnandini.coop/misc/favicon.ico" type="image/vnd.microsoft.icon">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	<title>Orders</title>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light "id="header">
+ <center> <a class="navbar-brand" href="#">
+    <img src="../images/logo.png" id="img" width="30" height="30" class="d-inline-block align-top " alt="">Banglore Milk Production pvt-lmt</a></center>
+</nav>
+<!-- navbar starts -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item ">
+        <a class="nav-link" href="index.html"><h3><i class="home fa fa-home active"></i>HOME </h3><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="about.html"><h3><i class="fa fa-user" aria-hidden="true"></i>  ABOUT US</i></h3></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="product.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <h3> OUR PRODUCTS</h3>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown hidden">
+          <a class="dropdown-item" href="../html/product1.html">MILK</a>
+          <a class="dropdown-item" href="../html/product2.html">Curds and fermented products</a>
+          <a class="dropdown-item" href="../html/product3.html">Milk sweets and chocolates</a>
+        </div>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="order.html"><h3><i class="fa fa-shopping-cart" aria-hidden="true"></i>  ORDERS</h3></a>
+      </li>
+    </ul>
+  </div>
+</nav><br><br>
+<!-- navbar ends -->
+
+<!-- INSERT INTO `customer` (`slno`, `name`, `address`, `pid`, `qty`) VALUES ('1', 'Nasrulla', 'dsgiuadsb', '122', '111'); -->
+
+<section class="order">
+	<div class="container heading text-center">
+		<h1 class="text-center font-weight">CUSTOMER ORDERS</h1>
+		<p>we are here to help u and answer ur queries....</p>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-10 offset-lg-2 offset-md-2 col-1">
+				<form action="/action_page.php">
+
+  				<div class="form-group">
+				    <input type="text" class="form-control" placeholder="Eneter your name" id="name" name="name">
+				  </div>
+
+				  <div class="form-group">
+				    <input type="address" class="form-control" placeholder="Enter your address" id="address" name="address">
+				  </div>
+
+				  <div class="form-group">
+				    <input type="number" class="form-control" placeholder="Enter your product id" id="product" name="pid">
+				  </div>
+
+				  <div class="form-group">
+				    <input type="number" class="form-control" placeholder="Enter quantity" id="pwd" name="qty">
+				  </div>
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</section>
+<?php
+  if($_SERVER['REQUEST_METHOD']=="POST")
+  {
+
+  $name=$_POST['name'];
+  $address=$_POST['address'];
+  $pid=$_POST['pid'];
+  $qty=$_POST['qty'];
+
+  $servername = "localhost";
+  $username="root";
+  $password="";
+  $database="project";
+
+  $connection= mysqli_connect( $servername,$username,$password, $database);
+
+    if(!connection)
+      {
+      die("sorry failed  to connect to".mysqli_connect_error());  
+      }
+      else{
+        echo "succesfully connected";
+        $sql ="INSERT INTO `customer` (`name`, `address`, `pid`, `qty`) VALUES ($name, $address ,$pid, $qty);";
+        $result = mysql_query($connection,$sql);
+        if($result)
+        {
+        echo '<div class="alert alert-success alert-dismisable fade show" role="alert">
+        <strong>Success!</strong> Your details are successfully submitted.
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>';
+        }
+        else 
+          {
+          echo '<div class="alert alert-success alert-dismisable fade show" role="alert">
+          <strong>FAILED!</strong> SORRY FAILES TO SUBMIT DETAILS.
+          <button type="button" class="close" data-dismiss="alert" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+          </div>';
+        } 
+      }
+  }
+?>
+
+<br><br><br><br><br>
+
+<!-- footer starts -->
+<div class="dexp-section" id="section-footer">
+  <div class="container">
+    <div class="row">
+      <!-- .region-copyright-->
+  <div class="region region-copyright col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="block-block-3" class="block block-block p-no-margin copyright_block">
+<div class="content">
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit; align-content: center;">© 2009 - 2020 Karnataka Milk Federation.  </font></font></p>
+
+</div>
+</div>
+  </div>
+<!-- END .region-copyright-->
+<!-- .region-footer-menu-->
+  <div class="region region-footer-menu col-xs-12 col-sm-6 col-md-6 col-lg-6">
+    <div id="block-menu-menu-footer-menu" class="block block-menu text-right footer-menu_block">
+<div class="content">
+<ul class="menu"><li class="first leaf"><a href="login.html" target="_blank"><i class=""></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;color:whitesmoke;"> Member Unions for Login</font></font></a></li>
+</ul>
+</div>
+</div>
+  </div>
+
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
